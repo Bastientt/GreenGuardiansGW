@@ -32,6 +32,7 @@ def cannette() :
         résultat = c.run(f"python ./ssh/output/canette.py")
 
     
-#transfertfichier("./canette.py","./ssh/output")
+transfertfichier("./client.py","./ssh/output")
 
-cannette()
+#cannette()
+
