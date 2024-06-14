@@ -1,7 +1,7 @@
 import os
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 
 class NeuroneConvolutionnel:
     def __init__(self, input_shape, num_classes):
@@ -35,6 +35,18 @@ class NeuroneConvolutionnel:
 
     def sauvegarder_modele(self, chemin):
         self.model.save(chemin)
+
+    def predire(self, image_path):
+        # Charger et prétraiter l'image
+        image = load_img(image_path, target_size=(self.input_shape[0], self.input_shape[1]))
+        image = img_to_array(image)
+        image = np.expand_dims(image, axis=0) / 255.0
+
+        # Effectuer la prédiction
+        predictions = self.model.predict(image)
+        predicted_class = np.argmax(predictions, axis=1)
+
+        return predicted_class[0]
 
 def main():
     save_file = './GreenGuardiansGW/AI/Model.keras'
@@ -86,5 +98,12 @@ def main():
     print("Test...")
     n.tester(test_generator)
 
-if __name__ == "__main__":
-    main()
+    # Exécution d'une prédiction sur une image d'exemple
+    image_path = './GreenGuardiansGW/AI/Dataset/Train/carton/carton.jpg'  # Remplacez par le chemin de votre image
+    predicted_class = n.predire(image_path)
+    print(f"Classe prédite pour l'image {image_path} : {predicted_class}")
+    return predicted_class
+
+
+def startAI() :
+    return main()

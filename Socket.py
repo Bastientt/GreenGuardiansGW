@@ -1,6 +1,6 @@
 import asyncio
 import socket
-from AI.AI import *
+from AI.NewAI import *
 
 
 async def handle_client(reader, writer):
@@ -19,7 +19,7 @@ async def handle_client(reader, writer):
         print("New image received")
 
         # AI part
-        resultAI = startSearch("./GreenGuardiansGW/Pictures/lastImage.jpg")
+        resultAI = startAI("./GreenGuardiansGW/Pictures/lastImage.jpg")
         print(f"AI result: {resultAI}")
         writer.write(f"result: {resultAI}".encode('utf-8'))
         await writer.drain()
