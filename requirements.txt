@@ -1,0 +1,12 @@
+tensorflow==2.12.0
+numpy==1.23.5
+opencv-python-headless==4.7.0.72
+keras==2.12.0
+pillow==9.5.0
+
+# Pour la gestion des capteurs et actionneurs sur Raspberry Pi
+RPi.GPIO==0.7.1
+gpiozero==1.6.2
+
+# Pour la communication en réseau
+socketIO-client==0.7.2
